@@ -6,7 +6,7 @@ const WeatherInfo = () => {
 let api_key =" f8e49ca944d77bb0460d19944e58e0ee"
   useEffect(() => {
 
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${api_key}`)
+    fetch("https://api.openweathermap.org/snapshot/{BULK_FILE_NAME}&appid=f8e49ca944d77bb0460d19944e58e0ee")
       .then((res) => {
         return res.json()
       })
@@ -113,3 +113,5 @@ let api_key =" f8e49ca944d77bb0460d19944e58e0ee"
 };
 
 export default WeatherInfo;
+// axios.get(`${baseUrl}?&units=${unit}&q=${city}&appid=${appKey}`)
+// const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
