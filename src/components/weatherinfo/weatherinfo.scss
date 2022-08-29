@@ -4,6 +4,7 @@
   margin-top: 45px;
   height: auto;
 
+
   .info-header {
     width: 100%;
     height: auto;
@@ -33,6 +34,7 @@
     margin: 45px 0;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 
     .current-day {
       height: 300px;
@@ -48,7 +50,6 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-
       }
 
       .temperature-description {
@@ -97,7 +98,7 @@
     }
 
     .next-day-item {
-      width: 120px;
+      width: 140px;
       background-color: #1b1a1d;
       display: flex;
       align-items: center;
@@ -105,6 +106,7 @@
       justify-content: center;
       height: 300px;
       border-radius: 35px;
+      margin: 0 13px;
       //position: relative;
 
 
