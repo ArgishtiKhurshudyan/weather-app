@@ -5,7 +5,7 @@ import DisplayDay from "./components/displaydays/DisplayDay";
 function App() {
   return (
     <div className="App">
-<Dashboard/>
+          <Dashboard/>
       {/*<DisplayDay/>*/}
     </div>
   );
