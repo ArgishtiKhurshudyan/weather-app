@@ -1,109 +1,55 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import "./weatherinfo.scss"
-
-const WeatherInfo = () => {
-  const [currentdata, setCurrentData] = useState({});
-  useEffect(() => {
-    fetch(` https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&q=hrazdan&appid=f8e49ca944d77bb0460d19944e58e0ee`)
-      .then((res) => {
-        return res.json()
-      })
-      .then((data) => {
-        setCurrentData(data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
-  console.log("data", currentdata)
-  console.log("city", currentdata?.city?.name)
-  console.log("list", currentdata?.list?.[0].main?.humidity)
-
+import {Link} from "react-router-dom";
+// https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&q=hrazdan&appid=f8e49ca944d77bb0460d19944e58e0ee;
+// "http://openweathermap.org/img/wn/10d@2x.png"
+const WeatherInfo = ({currentData}) => {
   return (
     <div className="weather-info-container">
       <div className="info-header">
         <div className="titles">
-          <button>Today</button>
-          <button>Tomorrow</button>
-          <button className="next-days">Next 7 days</button>
+          <Link to="favoriteCities"><p>Favorite cities</p></Link>
+          {/*<button>Tomorrow</button>*/}
+         <Link to="fivedaysinfo"> <p className="next-days">Next 5 days</p></Link>
         </div>
       </div>
       <div className="info-days">
-          <div className="current-day">
+        <div className="current-day">
           <div className="title-day">
-            <h2>Monday</h2> <h3>15:44 PM</h3>
+            <h2>{currentData.name}</h2>{currentData.sys ?
+            <h2 style={{color: "white"}}>{currentData.sys.country}</h2> : null}
           </div>
           <div className="temperature-description">
             <div className="temp-degree">
               <div className="number-temp">
-                <h1>16</h1>
-                <div className="degree-symbol">1</div>
+                {currentData.main ? <h1>{currentData.main.temp.toFixed()}F&#176;</h1> : null}
               </div>
-              <span><small>Real Feel</small>18</span>
-              <span><small>Wind: N-E,</small>5-8 km/h</span>
-              <span><small>Pressure:</small>{currentdata?.list?.[0].main.pressure}MB</span>
-              <span><small>Humidity:</small>{currentdata?.list?.[0].main.humidity}%</span>
+              {currentData.main ? <span><small>Real Feel </small>{currentData.main.feels_like.toFixed()}&#176;</span> : null}
+              {currentData.main ? <span><small>Wind: N-E, </small>{currentData.wind.speed}km/h</span> : null}
+              {currentData.main ? <span><small>Pressure: </small>{currentData.main.pressure}Mb</span> : null}
+              {currentData.main ? <h3>Humidity {currentData.main.humidity}%</h3> : null}
             </div>
             <img src="http://openweathermap.org/img/wn/10d@2x.png"/>
           </div>
-          </div>
-            <div className="next-day-item">
-          <h1>Tue</h1>
-          <hr/>
+        </div>
+        {currentData.weather ? <h1 style={{color: "white"}}>{currentData.weather?.[0].main}</h1> : null}
+        <div className="next-day-item">
           <img src="http://openweathermap.org/img/wn/10d@2x.png"/>
+          <hr/>
+          {currentData.wind ? <span style={{color: "silver"}}>wind deg {currentData.wind.deg} &#176;</span> : null}
           <div className="number-temp">
-            <h2>10&#176;</h2>
+            {currentData.weather ? <h3 style={{color: "aqua"}}>{currentData.weather?.[0].description}</h3> : null}
           </div>
         </div>
         <div className="next-day-item">
-          <h1>Wed</h1>
+          <h1>Sea level</h1>
           <hr/>
-          <img
-            src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-partly-cloudy-512.png"/>
-          <div className="number-temp">
-            <h2>15&#176;</h2>
-          </div>
-        </div>
-        <div className="next-day-item">
-          <h1>Thu</h1>
-          <hr/>
-          <img
-            src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-partly-cloudy-512.png"/>
-          <div className="number-temp">
-            <h2>11&#176;</h2>
-          </div>
-        </div>
-        <div className="next-day-item">
-          <h1>Fri</h1>
-          <hr/>
-          <img
-            src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-partly-cloudy-512.png"/>
-          <div className="number-temp">
-            <h2>12&#176;</h2>
-          </div>
-        </div>
-        <div className="next-day-item">
-          <h1>Sat</h1>
-          <hr/>
-          <img
-            src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-partly-cloudy-512.png"/>
-          <div className="number-temp">
-            <h2>18&#176;</h2>
-          </div>
-        </div>
-        <div className="next-day-item">
-          <h1>Sun</h1>
-          <hr/>
-          <img
-            src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-partly-cloudy-512.png"/>
-          <div className="number-temp">
-            <h2>37&#176;</h2>
-          </div>
+          {currentData.main ? <h2 style={{color:"white"}}>{currentData.main.sea_level}m</h2>: null}
         </div>
       </div>
       <div style={{width: "100%"}}>
-        <img style={{width: "100%", height: "400px"}}
-             src="https://ane4bf-datap1.s3-eu-west-1.amazonaws.com/wmocms/s3fs-public/styles/featured_media_detail/public/news/featured_media/20150428_03e.png?V1RJ2xZ9EZJ5PeeMM.9k1.BJr0POAqZb&itok=xwUKYU4_"/>
+        <img style={{width: "100%", height: "350px"}}
+             src="https://miro.medium.com/max/1400/1*GsImz-edoeuqCMfKxDus0w.jpeg"/>
       </div>
     </div>
   );

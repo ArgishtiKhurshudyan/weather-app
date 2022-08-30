@@ -68,6 +68,10 @@
           flex-direction: column;
           width: 125px;
 
+          span {
+            margin: 4px 0;
+          }
+
           .number-temp {
             width: 80px;
             height: 75px;
@@ -98,7 +102,7 @@
     }
 
     .next-day-item {
-      width: 140px;
+      width: 200px;
       background-color: #1b1a1d;
       display: flex;
       align-items: center;
