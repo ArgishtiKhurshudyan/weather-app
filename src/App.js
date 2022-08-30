@@ -1,3 +1,4 @@
+import Navbar from "./components/navbar/Navbar";
 import Dashboard from "./components/weatherdashbord/Dashboard";
 import DisplayDay from "./components/displaydays/DisplayDay";
 import {BrowserRouter, Routes,Route} from "react-router-dom";
@@ -15,6 +16,8 @@ function App() {
       </BrowserRouter>
 
 
+          <Dashboard/>
+      {/*<DisplayDay/>*/}
     </div>
   );
 }
