@@ -3,57 +3,92 @@ import Box from '@mui/material/Box';
 import {DataGrid} from '@mui/x-data-grid';
 import {useEffect, useState} from "react";
 import {Delete, Person} from "@mui/icons-material";
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import "./city.scss"
 
 
 const FavoriteCity = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(() => {
+    const savedData = localStorage.getItem("data");
+    if (savedData) {
+      return JSON.parse((savedData))
+    } else {
+      return []
+    }
+  });
+  const [inputValue, setInputValue] = useState('')
+  const [location, setLocation] = useState();
   const [selectionModel, setSelectionModel] = useState([]);
-  // "https://jsonplaceholder.typicode.com/users"
-  useEffect(() => {
-    fetch("https://github.com/shivammathur/countrycity/blob/main/data/geo.json")
-      .then((res) => {
-        return res.json()
-      })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((err) => {
-        throw new Error()
-      })
-  }, [])
 
-  console.log(data)
+  useEffect(() => {
+    fetching(location);
+    localStorage.setItem("data", JSON.stringify(data));
+  }, [location, data])
+
+  const fetching = async (location) => {
+    try {
+      await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35&lon=135&q=${location}&appid=f8e49ca944d77bb0460d19944e58e0ee`)
+        .then((res) => {
+          return res.json()
+        })
+        .then((res) => {
+          setData([
+            ...data,
+            {
+              id: Date.now(),
+              name: res.name,
+              country: res.sys.country,
+              weather: res.weather?.[0].main,
+              main: res.main.temp + "F",
+            }
+          ]);
+        })
+    } catch {
+      throw new Error()
+    }
+  }
+
+  const handleAdd = () => {
+    fetching(inputValue);
+  }
+
   const columns = [
     {field: 'id', headerName: 'ID', width: 90},
     {
-      field: 'username',
-      headerName: 'First name',
-      width: 150,
-      editable: true,
-    },
-    {
       field: 'name',
-      headerName: 'Last name',
+      headerName: 'city name',
       width: 150,
       editable: true,
     },
     {
-      field: 'email',
-      headerName: 'Email',
+      id: 2,
+      field: 'country',
+      headerName: 'Country',
       width: 110,
       editable: true,
-
     },
     {
-      field: 'phone',
-      headerName: 'Phone',
+      id: 3,
+      field: "weather",
+      headerName: 'Weather',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
       editable: true
     },
     {
+      id: 6,
+      field: "main",
+      headerName: 'Temp',
+      description: 'This column has a value getter and is not sortable.',
+      sortable: false,
+      width: 160,
+      editable: true
+    },
+    {
+      id: 4,
       field: 'delete',
       headerName: 'Delete',
       description: 'This column has a value getter and is not sortable.',
@@ -65,18 +100,29 @@ const FavoriteCity = () => {
       }
       }/>
     },
-
   ]
 
   return (
     <div className="box-container">
-      <Box sx={{height: 400, width: '100%', backgroundColor:"white"}}>
+      <h1>Favorite cities</h1>
+      <Box sx={{height: 400, width: '100%', backgroundColor: "white"}}>
+        <TextField
+          onChange={(e) => setInputValue(e.target.value)}
+          helperText="Please enter your name"
+          id="demo-helper-text-misaligned"
+          label="Name"
+        />
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success" onClick={handleAdd}>
+            Add
+          </Button>
+        </Stack>
         <DataGrid
+          style={{backgroundColor: "white"}}
           rows={data}
           columns={columns}
           pageSize={4}
           rowsPerPageOptions={[4]}
-          checkboxSelection
           // disableSelectionOnClick
           experimentalFeatures={{newEditingApi: true}}
           onSelectionModelChange={(ids) => {
