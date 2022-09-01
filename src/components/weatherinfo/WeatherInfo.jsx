@@ -1,16 +1,20 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import "./weatherinfo.scss"
 import {Link} from "react-router-dom";
-// https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&q=hrazdan&appid=f8e49ca944d77bb0460d19944e58e0ee;
-// "http://openweathermap.org/img/wn/10d@2x.png"
+
 const WeatherInfo = ({currentData}) => {
+  const [tempMode, setTempMode] = useState(false)
+
   return (
     <div className="weather-info-container">
       <div className="info-header">
         <div className="titles">
-          <Link to="favoriteCities"><p>Favorite cities</p></Link>
-          {/*<button>Tomorrow</button>*/}
-         <Link to="fivedaysinfo"> <p className="next-days">Next 5 days</p></Link>
+          <Link to="favoriteCities" style={{textDecoration: "none"}}><p>Favorite cities</p></Link>
+          <Link to="fivedaysinfo" style={{textDecoration: "none"}}><p className="next-days">Next 5 days</p></Link>
+          <div className="mode_temperature">
+            <button className={tempMode ? "left" : "right"}
+                    onClick={(e) => setTempMode(!tempMode)}>{tempMode ? "F" : "C"}&#176;</button>
+          </div>
         </div>
       </div>
       <div className="info-days">
@@ -22,9 +26,13 @@ const WeatherInfo = ({currentData}) => {
           <div className="temperature-description">
             <div className="temp-degree">
               <div className="number-temp">
-                {currentData.main ? <h1>{currentData.main.temp.toFixed()}F&#176;</h1> : null}
+                {currentData.main ? tempMode ? <h1> {currentData.main.temp.toFixed()}F&#176;</h1> :
+                  <h1> {(currentData.main.temp / 10).toFixed()}C&#176;</h1> : null}
               </div>
-              {currentData.main ? <span><small>Real Feel </small>{currentData.main.feels_like.toFixed()}&#176;</span> : null}
+              {currentData.main ?
+                tempMode ?
+                  <span><small>Real Feel </small>{currentData.main.feels_like.toFixed()}F&#176;</span> :
+                  <span><small>Real Feel </small>{(currentData.main.feels_like / 11).toFixed()}C&#176;</span> : null}
               {currentData.main ? <span><small>Wind: N-E, </small>{currentData.wind.speed}km/h</span> : null}
               {currentData.main ? <span><small>Pressure: </small>{currentData.main.pressure}Mb</span> : null}
               {currentData.main ? <h3>Humidity {currentData.main.humidity}%</h3> : null}
@@ -44,12 +52,12 @@ const WeatherInfo = ({currentData}) => {
         <div className="next-day-item">
           <h1>Sea level</h1>
           <hr/>
-          {currentData.main ? <h2 style={{color:"white"}}>{currentData.main.sea_level}m</h2>: null}
+          {currentData.main ? <h2 style={{color: "white"}}>{currentData.main.sea_level}m</h2> : null}
         </div>
       </div>
       <div style={{width: "100%"}}>
-        <img style={{width: "100%", height: "350px"}}
-             src="https://miro.medium.com/max/1400/1*GsImz-edoeuqCMfKxDus0w.jpeg"/>
+        <img style={{width: "60%", height: "350px", borderRadius: "20px", marginLeft: "475px"}}
+             src="https://i.gifer.com/AhdA.gif"/>
       </div>
     </div>
   );
