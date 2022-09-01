@@ -1,0 +1,33 @@
+.info-container {
+  width: 300px;
+  height: 300px;
+  background: rgba(27, 26, 29, 0.24);
+  position: absolute;
+  color: white;
+  left: 10px;
+  top: 80px;
+
+  .rain {
+    width: 300px;
+    height: 300px;
+    background-image: url("https://i.gifer.com/origin/fb/fbcd31fd8283dcb2a87edf1a53dc8028_w200.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .clouds {
+    width: 300px;
+    height: 300px;
+    background-image: url("https://murals-weblinc.netdna-ssl.com/product_images/storm-clouds-19759697/5ec82df0bd89dd0018f75ec0/product_large_image.jpg?c=1590177264");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .clear {
+    width: 300px;
+    height: 300px;
+    background-image: url("https://georgiatoday.ge/wp-content/uploads/2021/07/sunshine_36366417_ver1.0-8.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
