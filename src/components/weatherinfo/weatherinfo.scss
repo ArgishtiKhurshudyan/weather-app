@@ -64,6 +64,14 @@
 
       .next-days {
         color: white;
+        display: flex;
+        align-items: center;
+
+        @keyframes arrowBlink {
+          to {
+            opacity: 0.2;
+          }
+        }
       }
     }
   }
@@ -186,6 +194,13 @@
           font-size: 0;
         }
       }
+    }
+  }
+  .item_footer {
+    display: flex;
+    justify-content: space-between;
+    .animation {
+      width: 500px;
     }
   }
 }

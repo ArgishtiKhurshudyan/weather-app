@@ -3,6 +3,7 @@ import "./displayedday.scss"
 import Dayinfo from "../dayinfo/Dayinfo";
 import {useDispatch, useSelector} from "react-redux";
 import {getDataRequest} from "../../redux/weather/actions";
+import Intro from "../intro/Intro";
 
 const DisplayDay = ({location}) => {
   const [target, setTarget] = useState({});
@@ -14,7 +15,7 @@ const DisplayDay = ({location}) => {
 
   return (
     <div className="displayedDays-container">
-      <div className="location"><h1>Five days info</h1> <span>{location}</span></div>
+      <div className="location"><Intro location={location}/></div>
       <div className="includes-days">
         {isGettingData ? <h1 style={{color: "white", fontWeight: "400"}}>Loading...</h1> :
           <>
