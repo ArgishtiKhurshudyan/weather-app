@@ -45,7 +45,7 @@ const WeatherInfo = ({locationData}) => {
           <hr/>
           {locationData.wind ? <span style={{color: "silver"}}>wind deg {locationData.wind.deg} &#176;</span> : null}
           <div className="number-temp">
-            {locationData.weather ? <h3 style={{color: "aqua"}}>{locationData.weather?.[0].description}</h3> : null}
+            {locationData.weather ? <span style={{color: "aqua", fontSize:"17px"}}>{locationData.weather?.[0].description}</span> : null}
           </div>
         </div>
         <div className="next-day-item">
@@ -55,10 +55,10 @@ const WeatherInfo = ({locationData}) => {
         </div>
       </div>
 
-      <div style={{width: "100%"}} className="item_footer">
-        <img style={{width: "60%", height: "350px", borderRadius: "20px",}}
-             src="https://i.gifer.com/AhdA.gif"/>
-      </div>
+      {/*<div style={{width: "100%"}} className="item_footer">*/}
+      {/*  <img style={{width: "60%", height: "350px", borderRadius: "20px",}}*/}
+      {/*       src="https://i.gifer.com/AhdA.gif"/>*/}
+      {/*</div>*/}
     </div>
   );
 };
