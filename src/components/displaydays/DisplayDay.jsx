@@ -1,37 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import "./displayedday.scss"
 import Dayinfo from "../dayinfo/Dayinfo";
+import {useDispatch, useSelector} from "react-redux";
+import {getDataRequest} from "../../redux/weather/actions";
 
 const DisplayDay = ({location}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [target, setTarget] = useState({});
-
-  let lat = 5;
-  let lon = 5;
+  const {isGettingData, data} = useSelector(state => state.weather)
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchingData = async () => {
-      setLoading(true)
-      try {
-        await fetch(` https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&q=${location}&appid=f8e49ca944d77bb0460d19944e58e0ee`)
-          .then((res) => {
-            return res.json()
-          })
-          .then((data) => {
-            setData(data.list)
-          })
-        setLoading(false)
-      } catch (err) {
-        throw new Error()
-      }
-    }
-    fetchingData()
+    dispatch(getDataRequest({name:location}))
   }, [])
+
   return (
     <div className="displayedDays-container">
       <div className="location"><h1>Five days info</h1> <span>{location}</span></div>
       <div className="includes-days">
-        {loading ? <h1 style={{color:"white", fontWeight:"400"}}>Loading...</h1> :
+        {isGettingData ? <h1 style={{color: "white", fontWeight: "400"}}>Loading...</h1> :
           <>
             <div className="day1">
               {data.map((item, index) => {

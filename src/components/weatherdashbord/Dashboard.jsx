@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./dashboard.scss"
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -6,10 +6,22 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import WeatherInfo from "../weatherinfo/WeatherInfo";
+import {useDispatch, useSelector} from "react-redux";
+import {getLocationRequest} from "../../redux/weather/actions";
 
-const Dashboard = ({setLocation, location, currentData, searchLocation}) => {
+const Dashboard = ({setLocation, location}) => {
   const [darkMode, setDarkMode] = useState(false)
+  const {locationData } = useSelector(state => state.weather)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLocationRequest({locationInfo:location}))
+  }, [])
 
+  const searchLocation = (event) => {
+    if (event.key === "Enter") {
+      dispatch(getLocationRequest({locationInfo: location}))
+    }
+  }
   return (
     <div className="dashboard-container">
       <div className="dashboard"
@@ -35,7 +47,7 @@ const Dashboard = ({setLocation, location, currentData, searchLocation}) => {
             />
           </div>
         </div>
-        <WeatherInfo location={location} setLocation={setLocation} currentData={currentData}/>
+        <WeatherInfo locationData={locationData}/>
       </div>
     </div>
   );

@@ -2,12 +2,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import {DataGrid} from '@mui/x-data-grid';
 import {useEffect, useState} from "react";
-import {Delete, Person} from "@mui/icons-material";
+import {Delete} from "@mui/icons-material";
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import "./city.scss"
-
 
 const FavoriteCity = () => {
   const [data, setData] = useState(() => {
@@ -29,7 +28,7 @@ const FavoriteCity = () => {
 
   const fetching = async (location) => {
     try {
-      await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35&lon=135&q=${location}&appid=f8e49ca944d77bb0460d19944e58e0ee`)
+      await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35&lon=135&q=${location}&appid=80b086b030a9c176bfdfbb17ba667927`)
         .then((res) => {
           return res.json()
         })
