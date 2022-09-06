@@ -10,19 +10,19 @@ const DisplayDay = ({location}) => {
   const {isGettingData, data} = useSelector(state => state.weather)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getDataRequest({name:location}))
+    dispatch(getDataRequest({name: location}))
   }, [])
 
   return (
     <div className="displayedDays-container">
 
-      <div className="location"> <h1 style={{width:"400px"}}>Have a good Day!</h1><Intro location={location}/></div>
+      <div className="location"><h1 style={{width: "400px"}}>Have a good Day!</h1><Intro location={location}/></div>
       <div className="includes-days">
         {isGettingData ? <h1 style={{color: "white", fontWeight: "400"}}>Loading...</h1> :
           <>
             <div className="day1">
               {data.map((item, index) => {
-                if (index < 5) {
+                if (index < 3) {
                   return <>
                     <div className="item" onClick={(event) => {
                       if (event.target) {
@@ -46,7 +46,7 @@ const DisplayDay = ({location}) => {
             </div>
             <div className="day1">
               {data.map((item, index) => {
-                if (index > 4 && index < 13) {
+                if (index > 2 && index < 11) {
                   return <>
                     <div className="item" onClick={(event) => {
                       if (event.target) {
@@ -72,7 +72,7 @@ const DisplayDay = ({location}) => {
             </div>
             <div className="day1">
               {data.map((item, index) => {
-                if (index > 12 && index < 21) {
+                if (index > 10 && index < 19) {
                   return <>
                     <div className="item" onClick={(event) => {
                       if (event.target) {
@@ -94,7 +94,7 @@ const DisplayDay = ({location}) => {
             </div>
             <div className="day1">
               {data.map((item, index) => {
-                if (index > 21 && index < 29) {
+                if (index > 18 && index < 27) {
                   return <>
                     <div className="item" onClick={(event) => {
                       if (event.target) {
@@ -116,7 +116,7 @@ const DisplayDay = ({location}) => {
             </div>
             <div className="day1">
               {data.map((item, index) => {
-                if (index > 29 && index < 37) {
+                if (index > 26 && index < 35) {
                   return <>
                     <div className="item" onClick={(event) => {
                       if (event.target) {
