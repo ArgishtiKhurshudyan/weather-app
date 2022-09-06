@@ -15,7 +15,8 @@ const DisplayDay = ({location}) => {
 
   return (
     <div className="displayedDays-container">
-      <div className="location"><Intro location={location}/></div>
+
+      <div className="location"> <h1 style={{width:"400px"}}>Have a good Day!</h1><Intro location={location}/></div>
       <div className="includes-days">
         {isGettingData ? <h1 style={{color: "white", fontWeight: "400"}}>Loading...</h1> :
           <>

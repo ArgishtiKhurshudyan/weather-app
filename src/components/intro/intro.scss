@@ -1,9 +1,13 @@
 
-.intro {
-  display: flex;
+//.intro {
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  background-color: white;
+
 
   .right {
-    flex: 1;
+    flex:1;
     position: relative;
 
     .wrapper {
@@ -12,11 +16,12 @@
       padding-left: 50px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: center;
 
       h3 {
         font-weight: 400;
         font-size: 25px;
+        margin: 10px 0;
 
         span {
           color: #f69803;
@@ -24,4 +29,4 @@
       }
     }
   }
-}
+//}

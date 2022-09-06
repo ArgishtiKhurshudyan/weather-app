@@ -1,7 +1,7 @@
 import React from "react";
 import "./intro.scss";
-import { init } from "ityped";
-import { useEffect, useRef } from "react";
+import {init} from "ityped";
+import {useEffect, useRef} from "react";
 
 export default function Intro({location}) {
   const textRef = useRef();
@@ -9,10 +9,10 @@ export default function Intro({location}) {
   useEffect(() => {
     init(textRef.current, {
       showCursor: true,
-      stringsElement: "#typed-string",
-
-      strings: [ location, "Five Days Information"],
+      strings: ["Five Days Information", location],
       cursorChar: '🌍',
+      loop: false,
+
     });
   }, []);
   return (
@@ -20,7 +20,7 @@ export default function Intro({location}) {
       <div className="right">
         <div className="wrapper">
           <h3>
-           <span ref={textRef}></span>
+          <span ref={textRef}></span>
           </h3>
         </div>
       </div>
