@@ -11,10 +11,9 @@ import {getLocationRequest} from "../../redux/weather/actions";
 
 const Dashboard = ({setLocation, location}) => {
   const [darkMode, setDarkMode] = useState(false)
-  const {locationData } = useSelector(state => state.weather)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLocationRequest({locationInfo:location}))
+    dispatch(getLocationRequest({locationInfo: location}))
   }, [])
 
   const searchLocation = (event) => {
@@ -47,7 +46,7 @@ const Dashboard = ({setLocation, location}) => {
             />
           </div>
         </div>
-        <WeatherInfo locationData={locationData}/>
+        <WeatherInfo/>
       </div>
     </div>
   );

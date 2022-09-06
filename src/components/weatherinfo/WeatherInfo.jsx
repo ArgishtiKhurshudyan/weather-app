@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import "./weatherinfo.scss"
 import {Link} from "react-router-dom";
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-const WeatherInfo = ({locationData}) => {
+import {useSelector} from "react-redux";
+const WeatherInfo = () => {
   const [tempMode, setTempMode] = useState(false)
+  const {locationData} = useSelector(state => state.weather)
   return (
     <div className="weather-info-container">
       <div className="info-header">

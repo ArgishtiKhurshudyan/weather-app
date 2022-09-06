@@ -4,7 +4,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import FavoriteCity from "./components/favoritcity/FavoriteCity";
 import {useState} from "react";
 
-
 function App() {
   const [location, setLocation] = useState("Yerevan");
   return (
