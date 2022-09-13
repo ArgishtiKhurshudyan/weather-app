@@ -3,6 +3,7 @@ import "./weatherinfo.scss"
 import {Link} from "react-router-dom";
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import {useSelector} from "react-redux";
+
 const WeatherInfo = () => {
   const [tempMode, setTempMode] = useState(false)
   const {locationData} = useSelector(state => state.weather)
@@ -10,8 +11,9 @@ const WeatherInfo = () => {
     <div className="weather-info-container">
       <div className="info-header">
         <div className="titles">
-          <Link to="favoriteCities" style={{textDecoration: "none"}}><p>Favorite cities</p></Link>
-          <Link to="fivedaysinfo" style={{textDecoration: "none"}}><p className="next-days">Next 5 days &nbsp; <ArrowRightAltIcon style={{animation: "arrowBlink 0.5s infinite"}}/></p></Link>
+          <Link to="posts" style={{textDecoration: "none"}}><p>Favorite cities</p></Link>
+          <Link to="info" style={{textDecoration: "none"}}><p className="next-days">Next 5 days &nbsp;
+            <ArrowRightAltIcon style={{animation: "arrowBlink 0.5s infinite"}}/></p></Link>
           <div className="mode_temperature">
             <button className={tempMode ? "left" : "right"}
                     onClick={(e) => setTempMode(!tempMode)}>{tempMode ? "F" : "C"}&#176;</button>
@@ -47,7 +49,8 @@ const WeatherInfo = () => {
           <hr/>
           {locationData.wind ? <span style={{color: "silver"}}>wind deg {locationData.wind.deg} &#176;</span> : null}
           <div className="number-temp">
-            {locationData.weather ? <span style={{color: "aqua", fontSize:"17px"}}>{locationData.weather?.[0].description}</span> : null}
+            {locationData.weather ?
+              <span style={{color: "aqua", fontSize: "17px"}}>{locationData.weather?.[0].description}</span> : null}
           </div>
         </div>
         <div className="next-day-item">
@@ -56,11 +59,6 @@ const WeatherInfo = () => {
           {locationData.main ? <h2 style={{color: "white"}}>{locationData.main.sea_level}m</h2> : null}
         </div>
       </div>
-
-      {/*<div style={{width: "100%"}} className="item_footer">*/}
-      {/*  <img style={{width: "60%", height: "350px", borderRadius: "20px",}}*/}
-      {/*       src="https://i.gifer.com/AhdA.gif"/>*/}
-      {/*</div>*/}
     </div>
   );
 };

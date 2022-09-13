@@ -29,9 +29,10 @@
     flex-direction: column;
 
     .day1 {
-      width: 1200px;
-      display: flex;
-      margin: 5px 0;
+      width: 1353px;
+      display: grid;
+      grid-template-columns: 2fr 2fr 2fr 3fr 2fr 2fr 2fr 2fr ;
+      margin: 5px 5px;
       background-image: url("https://res.cloudinary.com/practicaldev/image/fetch/s--vqF9LVka--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://images.unsplash.com/photo-1545193544-312983719627%3Fixlib%3Drb-1.2.1%26ixid%3DeyJhcHBfaWQiOjEyMDd9%26auto%3Dformat%26fit%3Dcrop%26w%3D1650%26q%3D80");
       background-repeat: no-repeat;
       background-size: cover;
@@ -39,12 +40,21 @@
 
     .item {
       width: 150px;
-      margin: 0 10px;
+      margin: 5px 8px;
       height: 180px;
       background-color: #e6910a12;
       cursor: pointer;
       h3 {
-        color: #0e0e3a;
+        color: #bcbcf1;
+        font-weight: 500;
+        background-color: #3f3f5a36;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h2 {
+        color: silver;
+        font-weight: 500;
       }
 
       h4 {

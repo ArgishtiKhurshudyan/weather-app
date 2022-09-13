@@ -21,122 +21,31 @@ const DisplayDay = ({location}) => {
         {isGettingData ? <h1 style={{color: "white", fontWeight: "400"}}>Loading...</h1> :
           <>
             <div className="day1">
-              {data.map((item, index) => {
-                if (index < 3) {
-                  return <>
-                    <div className="item" onClick={(event) => {
-                      if (event.target) {
-                        setTarget({
-                          month: item.dt_txt,
-                          weather: item.weather?.[0].main,
-                          temp: item.main.temp,
-                          humidity: item.main.humidity
-                        })
-                      }
-                    }}>
-                      <div className={item.weather?.[0].main === "Clouds" && "clouds"}>
-                        <h2>{item.dt_txt}</h2>
-                        <h4>Grnd_Level: {item.main.grnd_level}</h4>
-                        <h3>{item.weather?.[0].main}</h3>
-                      </div>
-                    </div>
-                  </>
-                }
-              })}
-            </div>
-            <div className="day1">
-              {data.map((item, index) => {
-                if (index > 2 && index < 11) {
-                  return <>
-                    <div className="item" onClick={(event) => {
-                      if (event.target) {
-                        setTarget({
-                          month: item.dt_txt,
-                          weather: item.weather?.[0].main,
-                          temp: item.main.temp,
-                          humidity: item.main.humidity
-                        })
-                      }
-                    }}
-                    >
-                      <>
-                        <h2>{item.dt_txt}</h2>
-                        <h4>Grnd_Level: {item.main.grnd_level}</h4>
-                        <h3>{item.weather?.[0].main}</h3>
-                      </>
-                    </div>
-                  </>
-                }
-              })}
+              {data.map((item) => {
+                return <>
+                  <div className="item" key={item.id} onClick={(event) => {
 
-            </div>
-            <div className="day1">
-              {data.map((item, index) => {
-                if (index > 10 && index < 19) {
-                  return <>
-                    <div className="item" onClick={(event) => {
-                      if (event.target) {
-                        setTarget({
-                          month: item.dt_txt,
-                          weather: item.weather?.[0].main,
-                          temp: item.main.temp,
-                          humidity: item.main.humidity
-                        })
-                      }
-                    }}>
+                    if (event.target) {
+                      setTarget({
+                        month: item.dt_txt,
+                        weather: item.weather?.[0].main,
+                        temp: item.main.temp,
+                        humidity: item.main.humidity
+                      })
+                    }
+                  }}>
+                    <div className={item.weather?.[0].main === "Clouds" && "clouds"}>
                       <h2>{item.dt_txt}</h2>
                       <h4>Grnd_Level: {item.main.grnd_level}</h4>
                       <h3>{item.weather?.[0].main}</h3>
                     </div>
-                  </>
-                }
+                  </div>
+                </>
+
               })}
             </div>
-            <div className="day1">
-              {data.map((item, index) => {
-                if (index > 18 && index < 27) {
-                  return <>
-                    <div className="item" onClick={(event) => {
-                      if (event.target) {
-                        setTarget({
-                          month: item.dt_txt,
-                          weather: item.weather?.[0].main,
-                          temp: item.main.temp,
-                          humidity: item.main.humidity
-                        })
-                      }
-                    }}>
-                      <h2>{item.dt_txt}</h2>
-                      <h4>Grnd_Level: {item.main.grnd_level}</h4>
-                      <h3>{item.weather?.[0].main}</h3>
-                    </div>
-                  </>
-                }
-              })}
-            </div>
-            <div className="day1">
-              {data.map((item, index) => {
-                if (index > 26 && index < 35) {
-                  return <>
-                    <div className="item" onClick={(event) => {
-                      if (event.target) {
-                        setTarget({
-                          month: item.dt_txt,
-                          weather: item.weather?.[0].main,
-                          temp: item.main.temp,
-                          humidity: item.main.humidity
-                        })
-                      }
-                    }}>
-                      <h2>{item.dt_txt}</h2>
-                      <h4>Grnd_Level: {item.main.grnd_level}</h4>
-                      <h3>{item.weather?.[0].main}</h3>
-                    </div>
-                  </>
-                }
-              })}
-            </div>
-          </>}
+          </>
+        }
       </div>
       {target.weather && <Dayinfo target={target}/>}
     </div>

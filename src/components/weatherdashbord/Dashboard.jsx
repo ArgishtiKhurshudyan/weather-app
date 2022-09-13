@@ -21,6 +21,8 @@ const Dashboard = ({setLocation, location}) => {
       dispatch(getLocationRequest({locationInfo: location}))
     }
   }
+
+
   return (
     <div className="dashboard-container">
       <div className="dashboard"
@@ -32,7 +34,7 @@ const Dashboard = ({setLocation, location}) => {
           <div className="searchbar-item"><SearchIcon style={{fontSize: "40px"}}/>
             <input
               value={location}
-              onChange={event => setLocation(event.target.value)}
+              onChange={(e) => setLocation(e.target.value)}
               type="text"
               onKeyPress={searchLocation}
               placeholder="Search city..."

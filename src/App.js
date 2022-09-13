@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard location={location} setLocation={setLocation}/>}/>
-          <Route path="/fivedaysinfo" element={<DisplayDay location={location}/>}/>
-          <Route path="/favoriteCities" element={<FavoriteCity location={location}/>}/>
+          <Route path="/info" element={<DisplayDay location={location}/>}/>
+          <Route path="/posts" element={<FavoriteCity location={location}/>}/>
         </Routes>
       </BrowserRouter>
     </div>
